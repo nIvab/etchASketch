@@ -15,24 +15,21 @@ allSliders.forEach((container) => {
     setBubble(slider, bubble) ; 
 })
 
-
-
-
-let r = document.querySelector("#Rlevel").value
-let g = document.querySelector("#Glevel").value
-let b = document.querySelector("#Blevel").value
-
 const allRGB_sliders = document.querySelectorAll(".RGBSliders") ; 
 
-allRGB_sliders.map( (container) => {
-    const slider = container.querySelector(".slider") ; 
-    
-    slider.addEventListener("input", ()=>{
-        
-    })
-
-}
-
+let r = document.querySelector("#Rlevel")
+let g = document.querySelector("#Glevel")
+let b = document.querySelector("#Blevel")
+console.log(r.value)
+r.addEventListener("input", () => {
+    setColor() ; 
+}) ; 
+g.addEventListener("input", () => {
+    setColor ; 
+}) ; 
+b.addEventListener("input", () => {
+    setColor()
+}) 
 // Color Preview Box
 
 
@@ -51,13 +48,6 @@ function setBubble(slider, bubble) {
     bubble.style.left = `calc(${offset}% - 14px)` ; 
 }
 
-function changeColorPreview(red, green, blue) {
-    /* Dynamically changes the color of the color preview box
-    the input parameters should be the input range objects */
-    let redVal = red.value ;
-    let greenVal = green.value ; 
-    let blueVal = blue.value ; 
-
-    document.getElementById("colorPreview").style.backgroundColor = `rgb(${r},${g},${b})` ; 
-
+function setColor(){
+    document.getElementById("#colorPreview").style.backgroundColor = `rgb(${r.value}, ${g.value}, ${b.value})` ; 
 }
