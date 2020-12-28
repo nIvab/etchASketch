@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etch a Sketch!</title>
+    <link rel="stylesheet"     
+        href="https://fonts.googleapis.com/css?family=Dancing+Script">
+    <link rel="stylesheet"     
+        href="https://fonts.googleapis.com/css?family=Karla">
+    <link rel="stylesheet"     
+        href="https://fonts.googleapis.com/css?family=Hind+Vadodara">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+</head>
+
+<body>
+    <div class="heading">
+        <h1>Etch A Sketch! </h1>
+    </div>
+
+    <div class="where_all_the_sliders_sit">
+        <div class="subTitles" id="Res">Resolution</div>
+        <div class="slider_container" id="ResDiv">
+            <input type="range" min="10" max="500" value="50" class="slider" name="slider1">
+            <output class="bubble"></output>
+        </div> 
+        <div class="RGB">
+
+            <div class="subTitles" id="R"> Red</div>        
+            <div class="slider_container RGBSliders" id="Rdiv">
+                <input type="range" min="0" max="100" value="50" class="slider" id="Rlevel" name="slider1">
+                <output class="bubble"></output>
+            </div>
+            <div class="subTitles" id="G">Green</div>
+            <div class="slider_container RGBSliders" id="Gdiv">
+                <input type="range" min="0" max="100" value="50" class="slider" id="Glevel" name="slider1">
+                <output class="bubble"></output>
+            </div>
+
+            <div class="subTitles" id="B">Blue</div>
+            <div class="slider_container RGBSliders" id="Bdiv">
+                <input type="range" min="0" max="100" value="50" class="slider" id="Blevel" name="slider1">
+                <output class="bubble"></output>
+            </div>
+            <div class="colorPreview" id="colorPreview">
+                Sketch Color 
+            </div>
+        </div>
+
+    </div>
+
+    <div class="grid"></div>
+</body>
+
+<script src="app.js"></script>
+</html>
