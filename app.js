@@ -15,23 +15,23 @@ allSliders.forEach((container) => {
     setBubble(slider, bubble) ; 
 })
 
-const allRGB_sliders = document.querySelectorAll(".RGBSliders") ; 
+// --------- Code for color preview ----------- //
 
 let r = document.querySelector("#Rlevel")
 let g = document.querySelector("#Glevel")
 let b = document.querySelector("#Blevel")
-console.log(r.value)
+let colorArr = [r.value,g.value,b.value]
+setColor(colorArr, " "); // set color when starting up site 
+
 r.addEventListener("input", () => {
-    setColor() ; 
+    setColor(colorArr, "red") ; 
 }) ; 
 g.addEventListener("input", () => {
-    setColor ; 
+    setColor(colorArr, "green") ; 
 }) ; 
 b.addEventListener("input", () => {
-    setColor()
+    setColor(colorArr, "blue")
 }) 
-// Color Preview Box
-
 
 
 /* --------------- HELPER FUNCTIONS ---------- */ 
@@ -48,6 +48,17 @@ function setBubble(slider, bubble) {
     bubble.style.left = `calc(${offset}% - 14px)` ; 
 }
 
-function setColor(){
-    document.getElementById("#colorPreview").style.backgroundColor = `rgb(${r.value}, ${g.value}, ${b.value})` ; 
+
+function setColor(arr, colorSlider){
+    //update slider depending on color 
+    if(colorSlider == "red"){
+        arr[0] = r.value ; 
+    } else if(colorSlider == "green"){
+        arr[1] = g.value ; 
+    } else if(colorSlider == "blue"){
+        arr[2] = b.value ; 
+    }else{
+        document.querySelectorAll(".colorPreview")[0].style.backgroundColor = `rgb(${arr}` ; 
+    }
+    document.querySelectorAll(".colorPreview")[0].style.backgroundColor = `rgb(${arr})` ; 
 }
