@@ -39,10 +39,16 @@ b.addEventListener("input", () => {
 
 //creates the grid
 let res = document.querySelector("#resSlider")
-makeGrid(res.value)
+makeGrid(res.value) // definition on line 78
 res.addEventListener("input", () => {
     makeGrid(res.value)
 })
+
+let resetButton = document.querySelector(".reset")
+
+resetButton.addEventListener("click",() =>{
+    resetGrid() ; // definition on line 111
+} )
 
 /* --------------- HELPER FUNCTIONS ---------- */ 
 
@@ -74,39 +80,39 @@ function setColor(arr, colorSlider){
     }
     document.querySelectorAll(".colorPreview")[0].style.backgroundColor = `rgb(${arr})` ; 
 }
- // 
+ // implementation on line 42
 function makeGrid(resolution) {
     let area = resolution**2 ; 
     if(area>gridContainer.querySelectorAll("div").length){
-        //let gridWidth = document.getElementById("#grid_container").clientWidth ; 
-        for(i = 0 ; i <= resolution ; i++){
+        gridContainer.querySelectorAll("div").forEach( (square) => square.remove()) // reset grid before making new one
+        for(i = gridContainer.querySelectorAll("div").length ; i <= area ; i++){
             let gridSquare = document.createElement("div") ; 
+            //make grid
             gridContainer.style.gridTemplateColumns = `repeat(${resolution}, 1fr)` ; 
             gridContainer.style.gridTemplateRows = `repeat(${resolution}, 1fr)` ;
             gridContainer.insertAdjacentElement("beforeend", gridSquare)
         }
         let squares = gridContainer.querySelectorAll("div") ; 
-        squares.forEach(square => square.addEventListener("mouseover", colorSquare))
-    /*  squares.forEach(square, () => {
-            square.style.padding = gridWidth / resolution ; 
-        })*/
-    }else{
+        squares.forEach(square => square.addEventListener("mouseover", ()=>{
+            colorSquare(colorArr, square) // add functionality for etch a sketch
+        }))
+    }else if(area < gridContainer.querySelectorAll("div").length){
         //remove the divs in this case 
-        for(j=area ; j >= resolution ; j--){
-            gridContainer.querySelectorAll("div")[j].remove() ; 
-        }
+        gridContainer.querySelectorAll("div").forEach( (square) => square.remove())
+        makeGrid(resolution) ;  // no squares will be present so calling this function 
+                                // again will add them with no undesired behaviour
     }
 }
 
-function colorSquare(arr) {
+//implementation on line 96
+function colorSquare(arr, squareElem) {
     /* takes in array containing rgb values and sets color of element to the color 
     corresponding to those values  */
-    this.style.backgroundColor = `rgb(${arr})` ; 
+    squareElem.style.backgroundColor = `rgb(${arr})` ; 
 }   
 
+//implementation on line 50
 function resetGrid() {
-    let gridSquare = document.querySelectorAll(".grid_container") ; 
-    gridSquare.forEach(square, () => {
-        square.style.backgroundColor = white ; 
-    })
+    let squares = gridContainer.querySelectorAll("div") ; 
+    squares.forEach( (square) => square.style.backgroundColor = "white" )
 }

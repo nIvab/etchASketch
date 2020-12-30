@@ -52,9 +52,9 @@ body {
     display: grid;
     grid-template-rows: 50px auto;
     grid-template-columns: auto auto;
-    grid-template-areas: "where_all_the_sliders_sit heading"
-                         "where_all_the_sliders_sit grid_container";
-}
+    grid-template-areas: "heading where_all_the_sliders_sit"
+                         "grid_container where_all_the_sliders_sit";
+    min-height: 100%; }
 
 h1 {
     font-size: 40px;
@@ -66,7 +66,7 @@ h1 {
 .heading{
     display: flex;
     justify-content: center;
-    padding: 10px;
+    padding: 7px;
     box-shadow: 0 1px 4px rgba(141, 140, 140, 0.3), 0 0 40px rgba(235, 228, 228, 0.1) ;
     justify-content: center;
 }
@@ -77,11 +77,10 @@ h1 {
 .where_all_the_sliders_sit {
     width: 450px;
     height: 100vh;
-    margin-left: 0;
-    margin-top: 0%;
   /*  border-radius: 5%; */
     box-shadow: 0 1px 4px rgba(141, 140, 140, 0.3), 0 0 40px rgba(235, 228, 228, 0.1) ;
     font-family: 'Karla';
+    color: grey;
     padding: 20px;
 }
 #options {
@@ -179,7 +178,7 @@ h1 {
     width: 100%;
     height: 50px;
     box-shadow: 0 1px 4px rgba(141, 140, 140, 0.3), 0 0 40px rgba(235, 228, 228, 0.1) ;
-    border-radius: 5%;
+    border-radius: 20px;
     justify-content: center;
     align-items: flex-end;
     color: whitesmoke;
@@ -194,12 +193,35 @@ h1 {
 }
 
 .grid_container {
-    width: auto;
-    height: auto;
+    width: 74vw;
+    height: 100vh;
     display: grid;
     box-shadow: 0 1px 4px rgba(141, 140, 140, 0.3), 0 0 40px rgba(235, 228, 228, 0.1) ;
 }
 
 .grid_container div {
+    width: auto ; 
+    height: auto ;
+}
+
+/* ---------- CSS for reset button ----------- */ 
+
+button { 
+    color: grey;
+    font-family: "Karla";
+    margin-left: 170px;
+    margin-top: 60px;
+    padding: 30px ;
+    background-color: whitesmoke;
+    border: none;
+    border-radius: 25%;
     box-shadow: 0 1px 4px rgba(141, 140, 140, 0.3), 0 0 40px rgba(235, 228, 228, 0.1) ;
+}
+
+button:focus {
+    outline:0;
+}
+
+button:hover{
+    transform: scale(1.1) ; 
 }
