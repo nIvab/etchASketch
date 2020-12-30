@@ -37,6 +37,7 @@ b.addEventListener("input", () => {
 
 // --------------- Grid Code -------------------// 
 
+//creates the grid
 let res = document.querySelector("#resSlider")
 makeGrid(res.value)
 res.addEventListener("input", () => {
@@ -76,14 +77,25 @@ function setColor(arr, colorSlider){
  // 
 function makeGrid(resolution) {
     let area = resolution**2 ; 
-    for(i = 0 ; i <= area ; i++){
-        let gridSquare = document.createElement("div") ; 
-        gridContainer.style.gridTemplateColumns = `repeat(${resolution}, 1fr)` ; 
-        gridContainer.style.gridTemplateRows = `repeat(${resolution}, 1fr)` ;
-        gridContainer.insertAdjacentElement("beforeend", gridSquare)
+    if(area>gridContainer.querySelectorAll("div").length){
+        //let gridWidth = document.getElementById("#grid_container").clientWidth ; 
+        for(i = 0 ; i <= resolution ; i++){
+            let gridSquare = document.createElement("div") ; 
+            gridContainer.style.gridTemplateColumns = `repeat(${resolution}, 1fr)` ; 
+            gridContainer.style.gridTemplateRows = `repeat(${resolution}, 1fr)` ;
+            gridContainer.insertAdjacentElement("beforeend", gridSquare)
+        }
+        let squares = gridContainer.querySelectorAll("div") ; 
+        squares.forEach(square => square.addEventListener("mouseover", colorSquare))
+    /*  squares.forEach(square, () => {
+            square.style.padding = gridWidth / resolution ; 
+        })*/
+    }else{
+        //remove the divs in this case 
+        for(j=area ; j >= resolution ; j--){
+            gridContainer.querySelectorAll("div")[j].remove() ; 
+        }
     }
-    let squares = gridContainer.querySelectorAll("div") ; 
-    squares.forEach(square => square.addEventListener("mouseover", colorSquare))
 }
 
 function colorSquare(arr) {
