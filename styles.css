@@ -48,6 +48,14 @@ table {
 }
 
 /* --------    CSS RESET ABOVE THIS LINE     ----- */ 
+body {
+    display: grid;
+    grid-template-rows: 50px auto;
+    grid-template-columns: auto auto;
+    grid-template-areas: "where_all_the_sliders_sit heading"
+                         "where_all_the_sliders_sit grid_container";
+}
+
 h1 {
     font-size: 40px;
     font-family: 'Dancing Script' ;
@@ -62,16 +70,28 @@ h1 {
     box-shadow: 0 1px 4px rgba(141, 140, 140, 0.3), 0 0 40px rgba(235, 228, 228, 0.1) ;
     justify-content: center;
 }
+
+
 /* ------ CSS for sliders --------*/ 
 
 .where_all_the_sliders_sit {
     width: 450px;
     height: 100vh;
     margin-left: 0;
+    margin-top: 0%;
   /*  border-radius: 5%; */
     box-shadow: 0 1px 4px rgba(141, 140, 140, 0.3), 0 0 40px rgba(235, 228, 228, 0.1) ;
     font-family: 'Karla';
     padding: 20px;
+}
+#options {
+    margin-left: -20px;
+    margin-top: -19px ; 
+    width: 100% ; 
+    font-family: 'Dancing Script' ;
+    font-size: 25pt;
+    padding: 20px;
+    color:rgb(87, 82, 82);
 }
 
 .slider_container {
@@ -167,6 +187,19 @@ h1 {
 
 /*-------- CSS for grid ---------*/ 
 
-.grid {
+.main_container {
     display: grid;
+    grid-template-columns: 450px auto;
+    margin-top: 0;
+}
+
+.grid_container {
+    width: auto;
+    height: auto;
+    display: grid;
+    box-shadow: 0 1px 4px rgba(141, 140, 140, 0.3), 0 0 40px rgba(235, 228, 228, 0.1) ;
+}
+
+.grid_container div {
+    box-shadow: 0 1px 4px rgba(141, 140, 140, 0.3), 0 0 40px rgba(235, 228, 228, 0.1) ;
 }

@@ -1,6 +1,6 @@
 // -------- Code for sliders ------------
 const allSliders = document.querySelectorAll(".slider_container")
-
+const gridContainer = document.querySelector(".grid_container")
 
 // add bubble for each slider 
 allSliders.forEach((container) => {
@@ -8,7 +8,7 @@ allSliders.forEach((container) => {
     const bubble = container.querySelector(".bubble") ; 
     
     slider.addEventListener("input", ()=>{
-        setBubble(slider, bubble) ; 
+        setBubble(slider, bubble) ; //line 45 for definition of setBubble()
     })
 
     //set bubble on DOM load
@@ -21,6 +21,8 @@ let r = document.querySelector("#Rlevel")
 let g = document.querySelector("#Glevel")
 let b = document.querySelector("#Blevel")
 let colorArr = [r.value,g.value,b.value]
+
+//line 58 for function definiton of setColor()
 setColor(colorArr, " "); // set color when starting up site 
 
 r.addEventListener("input", () => {
@@ -33,10 +35,19 @@ b.addEventListener("input", () => {
     setColor(colorArr, "blue")
 }) 
 
+// --------------- Grid Code -------------------// 
+
+let res = document.querySelector("#resSlider")
+makeGrid(res.value)
+res.addEventListener("input", () => {
+    makeGrid(res.value)
+})
 
 /* --------------- HELPER FUNCTIONS ---------- */ 
 
+// line 11 onwards for implementation
 function setBubble(slider, bubble) {
+
     const val = slider.value ; 
     const min = slider.min ; 
     const max = slider.max ; 
@@ -48,7 +59,7 @@ function setBubble(slider, bubble) {
     bubble.style.left = `calc(${offset}% - 14px)` ; 
 }
 
-
+// line 28 onwards for implementation 
 function setColor(arr, colorSlider){
     //update slider depending on color 
     if(colorSlider == "red"){
@@ -61,4 +72,29 @@ function setColor(arr, colorSlider){
         document.querySelectorAll(".colorPreview")[0].style.backgroundColor = `rgb(${arr}` ; 
     }
     document.querySelectorAll(".colorPreview")[0].style.backgroundColor = `rgb(${arr})` ; 
+}
+ // 
+function makeGrid(resolution) {
+    let area = resolution**2 ; 
+    for(i = 0 ; i <= area ; i++){
+        let gridSquare = document.createElement("div") ; 
+        gridContainer.style.gridTemplateColumns = `repeat(${resolution}, 1fr)` ; 
+        gridContainer.style.gridTemplateRows = `repeat(${resolution}, 1fr)` ;
+        gridContainer.insertAdjacentElement("beforeend", gridSquare)
+    }
+    let squares = gridContainer.querySelectorAll("div") ; 
+    squares.forEach(square => square.addEventListener("mouseover", colorSquare))
+}
+
+function colorSquare(arr) {
+    /* takes in array containing rgb values and sets color of element to the color 
+    corresponding to those values  */
+    this.style.backgroundColor = `rgb(${arr})` ; 
+}   
+
+function resetGrid() {
+    let gridSquare = document.querySelectorAll(".grid_container") ; 
+    gridSquare.forEach(square, () => {
+        square.style.backgroundColor = white ; 
+    })
 }
